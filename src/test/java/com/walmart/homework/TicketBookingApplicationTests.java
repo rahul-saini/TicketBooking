@@ -31,30 +31,30 @@ public class TicketBookingApplicationTests {
 		ResponseEntity<String> forEntity = rest.getForEntity(BASE_URL + "/ticket", String.class);
 		Assert.assertTrue(Integer.valueOf(forEntity.getBody()).equals(350));
 		
-		forEntity = rest.getForEntity(BASE_URL + "/ticket/1", String.class);
+		forEntity = rest.getForEntity(BASE_URL + "/getAvailableSeats/1", String.class);
 		Assert.assertTrue(Integer.valueOf(forEntity.getBody()).equals(50));
 		
-		forEntity = rest.getForEntity(BASE_URL + "/ticket/2", String.class);
+		forEntity = rest.getForEntity(BASE_URL + "/getAvailableSeats/2", String.class);
 		Assert.assertTrue(Integer.valueOf(forEntity.getBody()).equals(100));
 		
-		forEntity = rest.getForEntity(BASE_URL + "/ticket/3", String.class);
+		forEntity = rest.getForEntity(BASE_URL + "/getAvailableSeats/3", String.class);
 		Assert.assertTrue(Integer.valueOf(forEntity.getBody()).equals(100));
 		
-		forEntity = rest.getForEntity(BASE_URL + "/ticket/4", String.class);
+		forEntity = rest.getForEntity(BASE_URL + "/getAvailableSeats/4", String.class);
 		Assert.assertTrue(Integer.valueOf(forEntity.getBody()).equals(100));
 		
 		ResponseEntity<Long> findAndHoldSeats = rest.postForEntity(BASE_URL + "/findAndHoldSeats/50/1/2/a@a.com", null, Long.class, new Object[]{});
 		Assert.assertNotNull(findAndHoldSeats.getBody());
 		
-		forEntity = rest.getForEntity(BASE_URL + "/ticket/1", String.class);
+		forEntity = rest.getForEntity(BASE_URL + "/getAvailableSeats/1", String.class);
 		Assert.assertTrue(Integer.valueOf(forEntity.getBody()).equals(0));
 		System.out.println("Tickets at level 1: " + forEntity.getBody());
 		
 		System.out.println("Start to sleep.");
-		Thread.sleep(20000); //Sleep for 35 seconds to expire.
+		Thread.sleep(35000); //Sleep for 35 seconds to expire.
 		System.out.println("Sleep End.");
 		
-		forEntity = rest.getForEntity(BASE_URL + "/ticket/1", String.class);
+		forEntity = rest.getForEntity(BASE_URL + "/getAvailableSeats/1", String.class);
 		System.out.println("Tickets at level 1: " + forEntity.getBody());
 		Assert.assertTrue(Integer.valueOf(forEntity.getBody()).equals(50));
 		
