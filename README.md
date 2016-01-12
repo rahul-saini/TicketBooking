@@ -41,6 +41,7 @@ src/main/resources/application.properties
 Some future enhancements:
 # Some other production ready database like ORACLE/MySQL can be used.
 # Multiple instances of project can be run on different nodes to support high number of user requests.
+# Add Spring security or any other security framework to add authentication/authorization support.
 
 Note: Spring boot is used to run/deploy the RestController for the ease of deployment and it's a good to have for Microservices.
 
